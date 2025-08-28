@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: survey-app-backend-v2   # ← 既存と被らない新しい名前にするのが超重要
+    name: survey-app-backend
     env: ruby
     plan: free
     rootDir: backend
@@ -28,7 +28,7 @@ services:
       #   value: <your master key>
 
   - type: web
-    name: survey-app-frontend-v2  # ← これも新しい名前に
+    name: survey-app-frontend
     env: static
     rootDir: frontend
     buildCommand: |
@@ -37,7 +37,7 @@ services:
     staticPublishPath: ./build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://survey-app-backend-v2.onrender.com  # ← backend名に合わせる
+        value: https://survey-app-backend-que0.onrender.com
 
 databases:
   - name: survey-app-db
