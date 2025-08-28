@@ -32,13 +32,19 @@ const SurveyForm: React.FC = () => {
   };
 
   const getApiUrl = () => {
+    // 本番環境の場合は環境変数から取得
+    if (process.env.REACT_APP_API_URL) {
+      return process.env.REACT_APP_API_URL;
+    }
+    
     // ngrok経由でのアクセスかどうかをチェック
     if (window.location.hostname.includes('ngrok')) {
       // ngrok経由の場合は、ローカルのバックエンドAPIを使用
-      // または、ngrokでバックエンドも公開している場合はそのURLを使用
       return 'http://localhost:3011';
     }
-    return process.env.REACT_APP_API_URL || 'http://localhost:3011';
+    
+    // ローカル開発環境
+    return 'http://localhost:3011';
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
