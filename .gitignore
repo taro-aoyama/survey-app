@@ -16,6 +16,7 @@ pickle-email-*.html
 /log/*
 /tmp/*
 backend/log/*
+backend/log/development.log
 backend/tmp/*
 !/log/.keep
 !/tmp/.keep
@@ -25,6 +26,7 @@ backend/tmp/*
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 backend/tmp/pids/*
+backend/tmp/pids/server.pid
 !/tmp/pids/
 !/tmp/pids/.keep
 !backend/tmp/pids/

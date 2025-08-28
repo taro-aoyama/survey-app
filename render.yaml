@@ -6,12 +6,16 @@ services:
     buildCommand: |
       cd backend
       bundle install
-      rails db:create
-      rails db:migrate
-      rails db:seed
+      # （必要なら）アセットをプリコンパイル
+      # RAILS_ENV=production を明示しておくと安全
+      RAILS_ENV=production bundle exec rails assets:precompile
     startCommand: |
       cd backend
-      rails server -b 0.0.0.0 -p $PORT
+      RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p $PORT
+    # 初回/デプロイごとにマイグレーションを走らせたい場合は postdeployCommand を使う
+    postdeployCommand: |
+      cd backend
+      RAILS_ENV=production bundle exec rails db:migrate
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -23,6 +27,9 @@ services:
         value: true
       - key: RAILS_LOG_TO_STDOUT
         value: true
+      # Rails 6+/7+ の本番では通常 RAILS_MASTER_KEY が必要です（後述）
+      # - key: RAILS_MASTER_KEY
+      #   value: <your-master-key>
 
   - type: web
     name: survey-app-frontend
