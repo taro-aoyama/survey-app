@@ -7,9 +7,8 @@ services:
     rootDir: backend
     buildCommand: |
       bundle install
-      RAILS_ENV=production bundle exec rails assets:precompile
     startCommand: |
-      bundle exec rails db:migrate && \
+      RAILS_ENV=production bundle exec rails db:migrate && \
       RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p $PORT
     healthCheckPath: /up
     envVars:
@@ -19,13 +18,8 @@ services:
           property: connectionString
       - key: RAILS_ENV
         value: production
-      - key: RAILS_SERVE_STATIC_FILES
-        value: true
       - key: RAILS_LOG_TO_STDOUT
         value: true
-      # credentials を使っているなら必須
-      # - key: RAILS_MASTER_KEY
-      #   value: <your master key>
 
   - type: web
     name: survey-app-frontend
