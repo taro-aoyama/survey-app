@@ -5,17 +5,14 @@ services:
     plan: free
     rootDir: backend
     buildCommand: |
-      cd backend
       bundle install
       # （必要なら）アセットをプリコンパイル
       # RAILS_ENV=production を明示しておくと安全
       RAILS_ENV=production bundle exec rails assets:precompile
     startCommand: |
-      cd backend
       RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p $PORT
     # 初回/デプロイごとにマイグレーションを走らせたい場合は postdeployCommand を使う
     postdeployCommand: |
-      cd backend
       RAILS_ENV=production bundle exec rails db:migrate
     envVars:
       - key: DATABASE_URL
@@ -42,7 +39,7 @@ services:
     staticPublishPath: ./frontend/build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://survey-app-backend.onrender.com
+        value: https://survey-app-backend-que0.onrender.com
 
 databases:
   - name: survey-app-db
