@@ -9,9 +9,8 @@ services:
       bundle install
       RAILS_ENV=production bundle exec rails assets:precompile
     startCommand: |
+      bundle exec rails db:migrate && \
       RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p $PORT
-    postDeployCommand: |
-      RAILS_ENV=production bundle exec rails db:migrate
     healthCheckPath: /up
     envVars:
       - key: DATABASE_URL
