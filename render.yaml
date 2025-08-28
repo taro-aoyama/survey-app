@@ -3,6 +3,8 @@ services:
     name: survey-app-backend
     env: ruby
     plan: free
+    runtime: ruby
+    rubyVersion: "3.2.2"
     buildCommand: |
       cd backend
       bundle install
