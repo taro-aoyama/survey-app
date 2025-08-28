@@ -35,6 +35,8 @@ const SurveyForm: React.FC = () => {
     // デバッグ用のログ
     console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
     console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('All environment variables:', process.env);
+    console.log('Current hostname:', window.location.hostname);
     
     // 本番環境の場合は環境変数から取得
     if (process.env.REACT_APP_API_URL) {
