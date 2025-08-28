@@ -10,7 +10,7 @@ services:
     startCommand: |
       RAILS_ENV=production bundle exec rails db:migrate && \
       RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p $PORT
-    healthCheckPath: /up
+    # healthCheckPath: /up
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -39,7 +39,7 @@ services:
 
 databases:
   - name: survey-app-db
-    region: singapore 
+    region: singapore
     databaseName: survey_app_production
     user: survey_app_user
     plan: free
