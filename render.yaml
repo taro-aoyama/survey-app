@@ -35,10 +35,7 @@ services:
     staticPublishPath: ./frontend/build
     envVars:
       - key: REACT_APP_API_URL
-        fromService:
-          type: web
-          name: survey-app-backend
-          property: url
+        value: https://survey-app-backend.onrender.com
 
 databases:
   - name: survey-app-db
