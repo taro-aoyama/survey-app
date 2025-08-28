@@ -42,15 +42,18 @@ backend/storage/*
 backend/config/master.key
 backend/config/credentials/*.key
 
-# Ignore bootsnap cache
+# Ignore bootsnap cache completely
 backend/tmp/cache/
 /tmp/cache/
+**/tmp/cache/
+**/cache/
 
 # Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
 
 # React
 /frontend/build/
@@ -77,3 +80,53 @@ Thumbs.db
 
 # Docker
 .dockerignore
+
+# Additional Rails ignores
+*.log
+*.pid
+*.seed
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-[0-9]*
+
+# Ignore all temporary files
+**/tmp/**
+**/log/**
+**/cache/**
+**/storage/**
+
+# Keep only essential directories
+!**/tmp/.keep
+!**/log/.keep
+!**/storage/.keep
+
+# Ignore bundle cache
+vendor/bundle/
+.bundle/
+
+# Ignore Spring files
+spring/
+
+# Ignore test coverage
+coverage/
+
+# Ignore database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Ignore backup files
+*.bak
+*.backup
+*~
+
+# Ignore compiled files
+*.o
+*.so
+*.dll
+*.dylib
+
+# Ignore lock files (optional - remove if you want to commit them)
+# Gemfile.lock
+# package-lock.json
+# yarn.lock
