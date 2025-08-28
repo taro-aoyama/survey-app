@@ -1,19 +1,17 @@
 services:
   - type: web
-    name: survey-app-backend
+    name: survey-app-backend-v2   # ← 既存と被らない新しい名前にするのが超重要
     env: ruby
     plan: free
     rootDir: backend
     buildCommand: |
       bundle install
-      # （必要なら）アセットをプリコンパイル
-      # RAILS_ENV=production を明示しておくと安全
       RAILS_ENV=production bundle exec rails assets:precompile
     startCommand: |
       RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p $PORT
-    # 初回/デプロイごとにマイグレーションを走らせたい場合は postdeployCommand を使う
     postdeployCommand: |
       RAILS_ENV=production bundle exec rails db:migrate
+    healthCheckPath: /up
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -25,12 +23,12 @@ services:
         value: true
       - key: RAILS_LOG_TO_STDOUT
         value: true
-      # Rails 6+/7+ の本番では通常 RAILS_MASTER_KEY が必要です（後述）
+      # credentials を使っているなら必須
       # - key: RAILS_MASTER_KEY
-      #   value: <your-master-key>
+      #   value: <your master key>
 
   - type: web
-    name: survey-app-frontend
+    name: survey-app-frontend-v2  # ← これも新しい名前に
     env: static
     rootDir: frontend
     buildCommand: |
@@ -39,7 +37,7 @@ services:
     staticPublishPath: ./build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://survey-app-backend-que0.onrender.com
+        value: https://survey-app-backend-v2.onrender.com  # ← backend名に合わせる
 
 databases:
   - name: survey-app-db
