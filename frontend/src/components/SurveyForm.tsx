@@ -14,11 +14,11 @@ interface SurveyData {
 const SurveyForm: React.FC = () => {
   const [formData, setFormData] = useState<SurveyData>({
     student_id: '',
-    question1: 1,
-    question2: 1,
-    question3: 1,
-    question4: 1,
-    question5: 1
+    question1: 0,
+    question2: 0,
+    question3: 0,
+    question4: 0,
+    question5: 0
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
@@ -44,11 +44,11 @@ const SurveyForm: React.FC = () => {
       setMessage('アンケートが正常に送信されました！');
       setFormData({
         student_id: '',
-        question1: 1,
-        question2: 1,
-        question3: 1,
-        question4: 1,
-        question5: 1
+        question1: 0,
+        question2: 0,
+        question3: 0,
+        question4: 0,
+        question5: 0
       });
     } catch (error: any) {
       console.error('Error submitting survey:', error);
@@ -91,7 +91,7 @@ const SurveyForm: React.FC = () => {
             value={formData.question1}
             onChange={handleInputChange}
             required
-            placeholder=""
+            placeholder="数値を入力してください"
           />
         </div>
 
@@ -104,7 +104,7 @@ const SurveyForm: React.FC = () => {
             value={formData.question2}
             onChange={handleInputChange}
             required
-            placeholder=""
+            placeholder="数値を入力してください"
           />
         </div>
 
@@ -117,7 +117,7 @@ const SurveyForm: React.FC = () => {
             value={formData.question3}
             onChange={handleInputChange}
             required
-            placeholder=""
+            placeholder="数値を入力してください"
           />
         </div>
 
@@ -130,7 +130,7 @@ const SurveyForm: React.FC = () => {
             value={formData.question4}
             onChange={handleInputChange}
             required
-            placeholder=""
+            placeholder="数値を入力してください"
           />
         </div>
 
@@ -143,7 +143,7 @@ const SurveyForm: React.FC = () => {
             value={formData.question5}
             onChange={handleInputChange}
             required
-            placeholder=""
+            placeholder="数値を入力してください"
           />
         </div>
 
