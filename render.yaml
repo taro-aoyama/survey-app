@@ -1,7 +1,8 @@
 services:
   - type: web
     name: survey-app-backend
-    env: ruby
+    region: singapore
+    runtime: ruby
     plan: free
     rootDir: backend
     buildCommand: |
@@ -29,7 +30,8 @@ services:
 
   - type: web
     name: survey-app-frontend
-    env: static
+    region: singapore
+    runtime: static
     rootDir: frontend
     buildCommand: |
       npm install
@@ -41,6 +43,7 @@ services:
 
 databases:
   - name: survey-app-db
+    region: singapore 
     databaseName: survey_app_production
     user: survey_app_user
     plan: free

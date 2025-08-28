@@ -32,31 +32,10 @@ const SurveyForm: React.FC = () => {
   };
 
   const getApiUrl = () => {
-    // デバッグ用のログ
-    console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
-    console.log('NODE_ENV:', process.env.NODE_ENV);
-    console.log('All environment variables:', process.env);
-    console.log('Current hostname:', window.location.hostname);
-    
-    // 本番環境の場合は環境変数から取得
     if (process.env.REACT_APP_API_URL) {
-      console.log('Using REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
       return process.env.REACT_APP_API_URL;
     }
     
-    // 本番環境のフォールバック（環境変数が読み込まれない場合）
-    if (window.location.hostname.includes('onrender.com')) {
-      console.log('Using fallback production URL');
-      return 'https://survey-app-backend-que0.onrender.com';
-    }
-    
-    // ngrok経由でのアクセスかどうかをチェック
-    if (window.location.hostname.includes('ngrok')) {
-      // ngrok経由の場合は、ローカルのバックエンドAPIを使用
-      return 'http://localhost:3011';
-    }
-    
-    // ローカル開発環境
     return 'http://localhost:3011';
   };
 
