@@ -15,21 +15,36 @@ pickle-email-*.html
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+backend/log/*
+backend/tmp/*
 !/log/.keep
 !/tmp/.keep
+!backend/log/.keep
+!backend/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
+backend/tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
+!backend/tmp/pids/
+!backend/tmp/pids/.keep
 
 # Ignore uploaded files in development.
 /storage/*
+backend/storage/*
 !/storage/.keep
+!backend/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials/*.key
+backend/config/master.key
+backend/config/credentials/*.key
+
+# Ignore bootsnap cache
+backend/tmp/cache/
+/tmp/cache/
 
 # Node.js
 node_modules/

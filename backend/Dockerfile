@@ -10,10 +10,10 @@ RUN apt-get update -qq && apt-get install -y \
 # 作業ディレクトリを設定
 WORKDIR /app
 
-# GemfileとGemfile.lockをコピー
-COPY Gemfile Gemfile.lock ./
+# Gemfileをコピー
+COPY Gemfile ./
 
-# gemをインストール
+# gemをインストール（Gemfile.lockがなくても動作）
 RUN bundle install
 
 # アプリケーションのコードをコピー
