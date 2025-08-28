@@ -27,7 +27,6 @@ services:
   - type: web
     name: survey-app-frontend
     env: static
-    plan: free
     buildCommand: |
       cd frontend
       npm install
