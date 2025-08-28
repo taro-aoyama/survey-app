@@ -28,12 +28,6 @@ const SurveyResults: React.FC = () => {
       return process.env.REACT_APP_API_URL;
     }
     
-    // ngrok経由でのアクセスかどうかをチェック
-    if (window.location.hostname.includes('ngrok')) {
-      // ngrok経由の場合は、ローカルのバックエンドAPIを使用
-      return 'http://localhost:3011';
-    }
-    
     // ローカル開発環境
     return 'http://localhost:3011';
   };
