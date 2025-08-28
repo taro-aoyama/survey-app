@@ -29,7 +29,6 @@ services:
 
   - type: web
     name: survey-app-frontend
-    region: singapore
     runtime: static
     rootDir: frontend
     buildCommand: |
