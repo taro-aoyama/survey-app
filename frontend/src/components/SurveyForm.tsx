@@ -31,13 +31,23 @@ const SurveyForm: React.FC = () => {
     }));
   };
 
+  const getApiUrl = () => {
+    // ngrok経由でのアクセスかどうかをチェック
+    if (window.location.hostname.includes('ngrok')) {
+      // ngrok経由の場合は、ローカルのバックエンドAPIを使用
+      // または、ngrokでバックエンドも公開している場合はそのURLを使用
+      return 'http://localhost:3011';
+    }
+    return process.env.REACT_APP_API_URL || 'http://localhost:3011';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage('');
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:3011'}/api/surveys`, {
+      await axios.post(`${getApiUrl()}/api/surveys`, {
         survey: formData
       });
 

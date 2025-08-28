@@ -80,6 +80,38 @@ BACKEND_PORT=3002 FRONTEND_PORT=3003 docker compose up --build
 - **バックエンドAPI**: http://localhost:3011
 - **管理者向け結果画面**: http://localhost:3010/admin/results
 
+### ngrok経由でのアクセス
+外部からアクセスする場合は、ngrokを使用できます：
+
+1. **ngrokの設定**
+   ```bash
+   # フロントエンドのみを公開
+   ngrok http 3010
+   ```
+
+2. **アクセスURL**
+   - フロントエンド: `https://[ngrok-id].ngrok-free.app`
+   - 管理者向け結果画面: `https://[ngrok-id].ngrok-free.app/admin/results`
+
+3. **現在の制限**
+   - ngrok経由でフロントエンドにアクセスする場合、APIリクエストはローカルのバックエンド（localhost:3011）に送信されます
+   - 外部から完全にアクセスするには、バックエンドもngrokで公開する必要があります
+
+4. **完全な外部アクセス（推奨）**
+   ```bash
+   # フロントエンド
+   ngrok http 3010
+   
+   # 別のターミナルでバックエンド
+   ngrok http 3011
+   ```
+   
+   この場合、フロントエンドのコードを修正して、バックエンドのngrok URLを使用するように設定が必要です。
+
+5. **注意事項**
+   - CORS設定でngrokドメインからのアクセスを許可しています
+   - ローカル開発環境での使用を推奨します
+
 ### アンケート項目
 1. **問1**: 数値入力（整数）
 2. **問2**: 数値入力（整数）

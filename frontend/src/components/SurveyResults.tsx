@@ -22,9 +22,19 @@ const SurveyResults: React.FC = () => {
     fetchSurveys();
   }, []);
 
+  const getApiUrl = () => {
+    // ngrok経由でのアクセスかどうかをチェック
+    if (window.location.hostname.includes('ngrok')) {
+      // ngrok経由の場合は、ローカルのバックエンドAPIを使用
+      // または、ngrokでバックエンドも公開している場合はそのURLを使用
+      return 'http://localhost:3011';
+    }
+    return process.env.REACT_APP_API_URL || 'http://localhost:3011';
+  };
+
   const fetchSurveys = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:3011'}/api/surveys`);
+      const response = await axios.get(`${getApiUrl()}/api/surveys`);
       setSurveys(response.data);
       setError('');
     } catch (error: any) {
@@ -37,7 +47,7 @@ const SurveyResults: React.FC = () => {
 
   const handleCSVDownload = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:3011'}/api/exports/csv`, {
+      const response = await axios.get(`${getApiUrl()}/api/exports/csv`, {
         responseType: 'blob'
       });
 
